@@ -145,9 +145,9 @@ const AdminPage = () => {
 	};
 
 	return (
-		<div className="flex flex-col container p-8 gap-4">
+		<div className="p-8 w-full">
 			<h1 className="text-2xl font-bold mb-6">Admin Page</h1>
-			<div className="flex w-full justify-between">
+			<div className="flex w-full justify-around flex-col gap-4">
 				<LayoutSelector
 					layouts={layouts}
 					selectedLayout={selectedLayout}

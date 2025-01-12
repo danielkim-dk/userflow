@@ -25,7 +25,7 @@ export default function CreateLayoutSheet({
 	return (
 		<Sheet open={isOpen} onOpenChange={onOpenChange}>
 			<SheetTrigger asChild>
-				<Button>Create New Layout</Button>
+				<Button className="w-[300px]">Create New Layout</Button>
 			</SheetTrigger>
 			<SheetContent>
 				<SheetHeader>
@@ -45,10 +45,7 @@ export default function CreateLayoutSheet({
 					</div>
 					<div className="space-y-4">
 						{Object.values(PAGES).map((pageId) => (
-							<div
-								key={pageId}
-								className="border rounded-lg p-4"
-							>
+							<div key={pageId} className="border rounded-lg p-4">
 								<h3 className="text-lg font-semibold mb-4">
 									Page {pageId}
 								</h3>

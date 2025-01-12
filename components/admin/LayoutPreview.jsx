@@ -2,7 +2,7 @@ export default function LayoutPreview({ layout }) {
 	if (!layout) return null;
 
 	return (
-		<div className="flex-1">
+		<div className="flex-1 mt-8">
 			<h2 className="text-xl font-semibold mb-4">
 				Layout Preview: {layout.layout_name}
 			</h2>

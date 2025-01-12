@@ -262,7 +262,7 @@ export async function getLayoutDetails(layoutId) {
 	return data;
 }
 
-export async function createLayout({ name, pages }) {
+export async function createLayout(name, pages) {
 	// First create the layout
 	const { data: layoutData, error: layoutError } = await supabase
 		.from("layouts")
@@ -273,13 +273,11 @@ export async function createLayout({ name, pages }) {
 	if (layoutError) throw layoutError;
 
 	// Then create the pages
-	const layoutPages = Object.entries(pages).map(
-		([pageNumber, components]) => ({
-			layout_id: layoutData.id,
-			page_number: parseInt(pageNumber),
-			components,
-		})
-	);
+	const layoutPages = Object.entries(pages).map(([pageNumber, components]) => ({
+		layout_id: layoutData.id,
+		page_number: parseInt(pageNumber),
+		components,
+	}));
 
 	const { error: pagesError } = await supabase
 		.from("layout_pages")

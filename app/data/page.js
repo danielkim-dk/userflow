@@ -32,7 +32,7 @@ export default function DataPage() {
 	}, []);
 
 	return (
-		<div className="container p-8">
+		<div className="w-full p-8">
 			<h1 className="text-2xl font-bold mb-6">User Data</h1>
 			<RefreshButton onClick={fetchUsers} isLoading={isLoading} />
 			<UserTable users={users} />
