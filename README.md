@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# UserFlow - Dynamic Form Management System
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Form management system built with Next.js and Supabase. The system consists of three main interfaces:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **User Interface**: A dynamic form flow that adapts based on layout configuration route = "/"
+2. **Admin Interface**: Layout management system for creating and configuring form flows route = "/admin"
+3. **Data Interface**: Data visualization dashboard for collected user responses route = "/data"
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Architecture
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Tech Stack
+- **Frontend**: Next.js with App Router
+- **Database**: Supabase (PostgreSQL)
+- **UI Components**: Shadcn/ui
+- **State Management**: React Context + Hooks
+- **Authentication**: Supabase Auth
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Key Components
 
-## Learn More
+#### Core Components
+- `[slug]/page.jsx`: Page renderer for form flows
+- `admin/page.js`: Admin interface for layout management
+- `data/page.js`: Data visualization interface
+- `SignIn.jsx`: Authentication component
 
-To learn more about Next.js, take a look at the following resources:
+#### Admin Components
+- `LayoutSelector`: Layout selection and default management
+- `ComponentList`: Component management for form pages
+- `CreateLayoutSheet`: Layout creation interface
+- `LayoutPreview`: Real-time layout preview
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Data Components
+- `UserTable`: User data visualization
+- `RefreshButton`: Data refresh management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Database Schema
 
-## Deploy on Vercel
+#### Tables
+1. **layouts**
+   - id (UUID)
+   - layout_name (String)
+   - is_default (Boolean)
+   - created_at (Timestamp)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **layout_pages**
+   - layout_id (UUID, FK)
+   - page_number (Integer)
+   - components (Array)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **users**
+   - id (UUID)
+   - email (String)
+   - current_page (String)
+   - form_data (JSON)
+   - layout_id (UUID, FK)
+
+## Features
+
+### User Flow
+- Dynamic form progression based on layout configuration
+- Progress tracking
+- Form data persistence
+- Responsive design with modern UI
+- Success page on completion
+
+### Admin Dashboard
+- Layout creation and management
+- Component drag-and-drop interface
+- Default layout selection
+- Real-time layout preview
+- Component validation
+
+### Data Dashboard
+- Real-time user data visualization
+- Form completion tracking
+- Data export capabilities
+- User progress monitoring
